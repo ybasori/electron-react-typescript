@@ -1,0 +1,50 @@
+{
+  "name": "electron-react-webpack",
+  "version": "1.0.0",
+  "main": "./electron/main.js",
+  "build": {
+    "appId": "com.pucutech.app",
+    "productName": "MyElectronApp",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "electron/**/*",
+      "public/**/*"
+    ],
+    "win": {
+      "target": "nsis"
+    }
+  },
+  "scripts": {
+    "dev": "concurrently \"webpack serve --config webpack/webpack.dev.js\" \"wait-on http://localhost:3000 && cross-env NODE_ENV=development electron ./electron/main.js\" ",
+    "build": "concurrently \"webpack --config webpack/webpack.prod.js\" \"wait-on ./public/index.html && cross-env NODE_ENV=production electron-builder\""
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
+    "css-loader": "^7.1.4",
+    "electron": "^41.0.3",
+    "electron-builder": "^26.8.1",
+    "html-webpack-plugin": "^5.6.6",
+    "sass": "^1.98.0",
+    "sass-loader": "^16.0.7",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.3",
+    "wait-on": "^9.0.4",
+    "webpack": "^5.105.4",
+    "webpack-cli": "^7.0.2",
+    "webpack-dev-server": "^5.2.3",
+    "webpack-merge": "^6.0.1"
+  }
+}
