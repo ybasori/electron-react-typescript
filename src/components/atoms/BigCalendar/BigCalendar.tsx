@@ -113,20 +113,50 @@ const BigCalendar = () => {
   return (
     <>
       <div style={{ display: "flex" }}>
-        <button type="button" style={{ cursor: "pointer" }} onClick={() => onChangeMonth(-1)}>
-          &lt;
-        </button>
-        <div style={{ minWidth: 120, textAlign: "center" }}>
-          {monthFullName[month]} {year}
+        <div style={{ display: "flex" }}>
+          <button
+            type="button"
+            style={{ cursor: "pointer" }}
+            onClick={() => onChangeMonth(-1)}
+          >
+            &lt;
+          </button>
+          <div style={{ minWidth: 120, textAlign: "center" }}>
+            {monthFullName[month]} {year}
+          </div>
+          <button
+            type="button"
+            style={{ cursor: "pointer" }}
+            onClick={() => onChangeMonth(1)}
+          >
+            &gt;
+          </button>
         </div>
-        <button type="button" style={{ cursor: "pointer" }} onClick={() => onChangeMonth(1)}>
-          &gt;
-        </button>
+        <div style={{ display: "flex", marginLeft: "auto" }}>
+          <button
+            type="button"
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              setMonth(dt.getMonth());
+              setYear(dt.getFullYear());
+              setOneTime(true);
+            }}
+          >
+            {dt.getDate()}
+          </button>
+        </div>
       </div>
 
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div style={{ display: "flex", flexDirection: "row" }}>
-          <div style={{ minWidth: 70, display: "flex", alignItems: "center" }}>
+          <div
+            style={{
+              minWidth: 70,
+              display: "flex",
+              alignItems: "center",
+              color: "red",
+            }}
+          >
             S
           </div>
           <div style={{ minWidth: 70, display: "flex", alignItems: "center" }}>
@@ -159,13 +189,14 @@ const BigCalendar = () => {
                     height: 70,
                     border: "solid 1px #000",
                     cursor: "pointer",
+                    opacity: sub.month===month?"100%":"20%"
                   }}
                   onClick={() =>
-                    dispatch(
+                    sub.month===month?dispatch(
                       navigate(
                         `/week?date=${sub.year}-${String(sub.month + 1).padStart(2, "0")}-${String(sub.date).padStart(2, "0")}`,
                       ),
-                    )
+                    ):(new Date(`${year}-${String(month + 1).padStart(2, "0")}-01`)).getTime() > (new Date(`${sub.year}-${String(sub.month + 1).padStart(2, "0")}-01`)).getTime()?onChangeMonth(-1):onChangeMonth(1)
                   }
                 >
                   <div
@@ -179,7 +210,11 @@ const BigCalendar = () => {
                             color: "white",
                             borderRadius: "50%",
                           }
-                        : {}
+                        : subkey === 0
+                          ? {
+                              color: "red",
+                            }
+                          : {}
                     }
                   >
                     {sub.date}

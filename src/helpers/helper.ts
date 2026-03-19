@@ -1,4 +1,4 @@
-export const extractQueryUrl = (input: string) => {
+export const extractQueryUrl = (value: string) => {
   function parseKeyPath(key: any) {
     const parts = [];
     const regex = /([^\[\]]+)/g;
@@ -30,7 +30,16 @@ export const extractQueryUrl = (input: string) => {
 
   const output = {};
 
-  for (const [key, value] of Object.entries(input)) {
+  let query={};
+
+
+
+  value.split("&").forEach((item)=>{
+    const v=item.split("=");
+    query = {...query,[v[0]]:v[1]}
+  })
+
+  for (const [key, value] of Object.entries(query)) {
     const path = parseKeyPath(key);
     setDeep(output, path, value);
   }
