@@ -3,8 +3,10 @@ const path = require("path");
 
 const createWindow = () => {
   const win = new BrowserWindow({
-    width: 800,
-    height: 600
+    width: 525,
+    height: 600,
+    resizable: false,     // ❌ user cannot resize
+    maximizable: false,   // ❌ disable maximize button
   });
 
   const isDev = process.env.NODE_ENV === "development";
