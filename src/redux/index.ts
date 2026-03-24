@@ -2,10 +2,12 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import route from "./slice/route.slice";
+import agenda from "./slice/agenda.slice";
 
 /* Combine reducers */
 const rootReducer = combineReducers({
-  route
+  route,
+  agenda
 });
 
 /* Persist config */

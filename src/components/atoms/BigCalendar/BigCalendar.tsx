@@ -147,11 +147,11 @@ const BigCalendar = () => {
         </div>
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <div style={{ display: "flex", flexDirection: "row" }}>
+      <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
+        <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
           <div
             style={{
-              minWidth: 70,
+              flex: 1,
               display: "flex",
               alignItems: "center",
               color: "red",
@@ -179,13 +179,13 @@ const BigCalendar = () => {
           </div>
         </div>
         {dates.map((item: any, key: React.Key | null | undefined) => (
-          <div key={key} style={{ display: "flex", flexDirection: "row" }}>
+          <div key={key} style={{ display: "flex", flexDirection: "row", width: "100%" }}>
             {(item ?? []).map(
               (sub: any, subkey: React.Key | null | undefined) => (
                 <div
                   key={subkey}
                   style={{
-                    minWidth: 70,
+                    flex: 1,
                     height: 70,
                     border: "solid 1px #000",
                     cursor: "pointer",

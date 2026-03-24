@@ -9,7 +9,7 @@ const initialState:{
   }
 
 const route = createSlice({
-  name: 'auth',
+  name: 'route',
   initialState,
   reducers: {
     navigate(state, action) {
