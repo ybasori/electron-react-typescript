@@ -1,21 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { monthFullName } from "src/constants";
 import { navigate } from "src/redux/slice/route.slice";
 
-const monthFullName = [
-  "January",
-  "Febuary",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+
 
 const BigCalendar = () => {
   const dt = new Date();
